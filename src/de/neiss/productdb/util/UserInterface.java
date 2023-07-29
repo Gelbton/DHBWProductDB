@@ -1,5 +1,6 @@
 package de.neiss.productdb.util;
 
+import de.neiss.productdb.data.DBReader;
 import de.neiss.productdb.model.Person;
 import de.neiss.productdb.model.Product;
 
@@ -10,30 +11,31 @@ import java.util.stream.Collectors;
 
 public class UserInterface
 {
-	DBRequest request = new DBRequest();
-	private final Scanner scanner;
+	private DBReader reader = new DBReader("productproject2023.txt");
+	private DBRequest request = new DBRequest(reader);
+
 
 	public UserInterface()
 	{
-		scanner = new Scanner(System.in);
+
 	}
 
-	public void start()
+	/**
+	 * sends a request to the database with the given input, the response is printed to out and not returned
+	 * @param args input command that will be processed
+	 */
+	public void start(String args)
 	{
-		while (true)
-			{
-			System.out.print("Enter a command: ");
-			String input = scanner.nextLine();
+			String input = args;
 			int argumentIndex = input.indexOf("=");
 
 			ArrayList<String> result = new ArrayList<>();
 
-			String command;
+			String command = null;
 			String argument = null;
 			if (input.equals("exit") || input.equals("--exit"))
 				{
 				System.out.println("\nTerminating program!");
-				break;
 				} else if (argumentIndex != -1)
 				{
 				command = input.substring(0, argumentIndex);
@@ -67,10 +69,14 @@ public class UserInterface
 					System.out.println("unknown command");
 				}
 			printResponse(result);
-			}
+			
 	}
 
-	void printResponse(ArrayList<String> list) {
+	/**
+	 * Prints the String Arraylist to the output, sorting it alphabetically and separating each list Element with a ", "
+	 * @param list the list that will be printed in alphabetical order
+	 */
+	private void printResponse(ArrayList<String> list) {
 		Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
 		String response = String.join(", ", list);
 		System.out.println(response);
