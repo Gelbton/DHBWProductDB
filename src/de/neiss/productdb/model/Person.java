@@ -12,9 +12,9 @@ public class Person
 	private List<Person> friends;
 	private List<Product> productsOwned;
 
-	public Person(int person_id, String name, String gender)
+	public Person(int personId, String name, String gender)
 	{
-		this.personId = person_id;
+		this.personId = personId;
 		this.name = name;
 		this.gender = gender;
 		this.friends = new ArrayList<>();
@@ -37,14 +37,18 @@ public class Person
 		return friends;
 	}
 
+	/**
+	 * Adds another person to the friends of the current person. Note that this automatically
+	 * adds this relationship is mutual and the current person automatically appearing in the other ones
+	 * friend list as well!
+	 * @param friend Person that is a friend
+	 */
 	public void addFriend(Person friend)
 	{
-		friends.add(friend);
-	}
-
-	public void removeFriend(Person friend)
-	{
-		friends.remove(friend);
+		if (!this.friends.contains(friend))
+			{
+			friends.add(friend);
+			}
 	}
 
 	public List<Product> getProductsOwned()
@@ -52,13 +56,16 @@ public class Person
 		return productsOwned;
 	}
 
+	/**
+	 * Adds the product to the products owned by the person. Does nothing if the person already owns the product.
+	 * @param product new product
+	 */
 	public void addProductOwned(Product product)
 	{
-		productsOwned.add(product);
+		if (!this.productsOwned.contains(product))
+			{
+			productsOwned.add(product);
+			}
 	}
 
-	public void removeProductOwned(Product product)
-	{
-		productsOwned.remove(product);
-	}
 }

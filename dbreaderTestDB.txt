@@ -1,0 +1,38 @@
+New_Entity: "person_id", "person_name", "person_gender"
+"0","Ellis Blair","Male"
+"1","Mike Houston","Male"
+"1","Chad Gardner","Male"
+"1","Milchmann","Male"
+"2","  Kyle Kelly  ","  Male  "
+"7","Jon Jackson"
+"8","Rafael Fowler","Male"
+"9","Casey Murray","Male"
+"10","Michael Rafael","Male"
+
+New_Entity: "person1_id","person2_id"
+"0","1"
+"1","0"
+"2","0"
+"8","0"
+
+New_Entity: "product_id","product_name"
+"203","iPad"
+"204","iPhone"
+"205","iPad Mini"
+"206","Google Home"
+
+New_Entity: "company_id","company_name"
+"200","Apple"
+"201","Google"
+
+New_Entity: "person_id","product_id"
+"0","203"
+"0","206"
+"2","204"
+"8","205"
+"2","206
+
+New_Entity: "product_id","company_id"
+"203","200"
+"204","200"
+"206","201"
